@@ -1,0 +1,22 @@
+[
+    {
+        "title": "Real-Time On-Chain Data Processing Platform",
+        "description": "Real-time Ethereum analytics backend that ingests mempool/new blocks over WebSockets, tracks txs/contract deployments, decodes EVM logs (topics + event signatures) to classify DEX swaps (Uniswap V2/V3, Curve), and serves historical queries via an Express REST API without hammering RPCs. Added safety signals like bytecode-based trust scoring (selector + storage-access patterns) and honeypot detection via on-chain simulation, plus ABI recovery for unverified/proxy contracts.",
+        "skills": ["Node.js", "Websockets", "Express", "MongoDB", "EthersJS", "EVM Decoding", "DEX Parsing"]
+    },
+    {
+        "title": "Multi-Chain Crypto Subscription Bot",
+        "description": "Multi-chain Telegram subscription bot (GrammyJS) for EVM + Solana that detects on-chain payments in real time. Dynamic USD pricing following market rates using Chainlink price oracles, and a non-custodial flow with automated wallet generation, consolidation, and trial/access lifecycle management backed by MongoDB/Mongoose.",
+        "skills": ["GrammyJS", "SolanaWeb3JS", "On-chain Pricing", "MongoDB", "Wallet Handling"]
+    },
+    {
+        "title": "Smart Contracts’ Socials Scraper",
+        "description": "Node.js scraper that monitors thousands of smart contracts, extracts hidden socials/metadata via Solidity source parsing, and verifies links with Puppeteer. Correlates results with on-chain events via Ethers.js.",
+        "skills": ["Node.js", "Scraping", "EthersJS", "Captcha Avoidance"]
+    },
+    {
+        "title": "Portfolio Website",
+        "description": "Designed a React (Vite) portfolio using TailwindCSS + shadcn/ui.",
+        "skills": ["React", "Vite", "TailwindCSS", "shadcn/ui"]
+    }
+]

@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 
 type MainLinkProps = {
   /** The URL to navigate to */
-  href: string;
+  href?: string;
   /** Display text for the link */
   label: string;
 } & React.ComponentProps<"div">;
@@ -28,7 +28,7 @@ export function MainLink({ href, label, className, ...props }: MainLinkProps) {
         target="_blank"
         rel="noopener noreferrer"
         // Default: dim text. On group hover: dimmer. Transition smooths it.
-        className="text-sm font-extralight text-primary/70 group-hover:text-primary/40 transition-colors"
+        className="text-sm font-thin text-muted-foreground group-hover:text-foreground transition-colors hover:cursor-pointer"
       >
         {label}
       </a>
@@ -36,7 +36,6 @@ export function MainLink({ href, label, className, ...props }: MainLinkProps) {
     </div>
   );
 }
-
 /** Reusable dashed line that fills available horizontal space */
 function DashedLine() {
   return (
@@ -50,3 +49,4 @@ function DashedLine() {
     />
   );
 }
+

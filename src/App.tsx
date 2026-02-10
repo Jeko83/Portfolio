@@ -10,7 +10,9 @@ import {
   HoverCardTrigger,
 } from "./components/ui/hover-card";
 import { delay } from "./lib/utils";
-
+import { HeaderButtons } from "./components/navigation-buttons";
+import { useNavigate } from "react-router-dom";
+import { Footer } from "./Footer";
 
 const LINKS = [
   { href: CV, label: "CV" },
@@ -20,42 +22,39 @@ const LINKS = [
 ] as const;
 
 export default function App() {
+  const navigate = useNavigate();
   return (
-    // Grid: main + footer share one cell. Main centers in full height, footer pins to bottom.
-    <div className="grid h-full [grid-template:1fr/1fr]">
+    // relative: lets absolute children position relative to this container
+    // flex items-center justify-center: centers main content both ways
+    <div className="relative h-screen flex items-center justify-center">
 
-      <main className="flex flex-col items-center justify-center [grid-area:1/1]">
-        <div className="w-full max-w-sm px-4">
+      {/* ─── Nav buttons ── pinned to top center ─────────────────────── */}
+      <HeaderButtons />
 
-          {/* ─── Header ───────────────────────────────────────────────── */}
-          <div className="opacity-0 animate-fade-in flex items-center w-full px-6" style={delay(0)}>
-            <NameCard />
-            <div className="mx-3 h-px shrink min-w-0 grow border-t border-dashed border-muted-foreground/10" />
-            <AvatarCard />
-          </div>
+      {/* ─── Main content ── naturally centered by the parent flex ──── */}
+      <main className="w-full max-w-md px-4">
+        <div className="opacity-0 animate-fade-in flex items-center w-full px-6" style={delay(0)}>
+          <NameCard />
+          <div className="mx-2 h-px shrink min-w-0 grow border-t border-dashed border-muted-foreground/10" />
+          <AvatarCard />
+        </div>
 
-          {/* ─── Divider ──────────────────────────────────────────────── */}
-          <div className="opacity-0 animate-fade-in" style={delay(1)}>
-            <Separator className="my-4" />
-          </div>
+        <div className="opacity-0 animate-fade-in" style={delay(1)}>
+          <Separator className="my-4" />
+        </div>
 
-          {/* ─── Links ────────────────────────────────────────────────── */}
-          <div className="opacity-0 animate-fade-in flex flex-col gap-1" style={delay(2)}>
-            {LINKS.map((link) => (
-              <MainLink key={link.label} href={link.href} label={link.label} />
-            ))}
-          </div>
+        <div className="opacity-0 animate-fade-in flex flex-col gap-1" style={delay(2)}>
+          {LINKS.map((link) => (
+            <MainLink key={link.label} href={link.href} label={link.label} />
+          ))}
+          <MainLink onClick={() => navigate("/projects")} label="Projects" />
+          {/* TODO: Implement about page
+            <MainLink onClick={() => navigate("/about")} label="About" /> */
+          }
         </div>
       </main>
 
-      {/* ─── Footer ───────────────────────────────────────────────────── */}
-      <div className="opacity-0 animate-fade-in [grid-area:1/1] self-end border-muted-foreground/8 border-t" style={delay(3)}>
-        <footer className="py-2 text-center w-full">
-          <span className="text-xs font-extralight text-muted-foreground/50">
-            © 2026 Giacomo Catelan
-          </span>
-        </footer>
-      </div>
+      <Footer />
     </div>
   );
 }
@@ -71,11 +70,11 @@ function NameCard() {
       </HoverCardTrigger>
       <HoverCardContent
         side="top"
-        className="flex flex-col items-center w-auto border-0 shadow-[inset_0_0_20px_rgba(0,0,0,1)]"
+        className="w-auto border-0 shadow-[inset_0_0_20px_rgba(0,0,0,1)]"
       >
-        <p className="text-sm font-light">SW Developer</p>
-        <p className="text-xs mt-2 font-extralight text-muted-foreground">Born in 1999</p>
-        <p className="text-xs mt-2 font-extralight text-muted-foreground">Living in Trento, Italy.</p>
+        <p className="text-sm font-light text-center">SW Developer</p>
+        <p className="text-xs mt-2 font-extralight text-muted-foreground text-center">Born in 1999</p>
+        <p className="text-xs mt-2 font-extralight text-muted-foreground text-center">Living in Trento, Italy</p>
       </HoverCardContent>
     </HoverCard>
   );
@@ -93,11 +92,11 @@ function AvatarCard() {
       </HoverCardTrigger>
       <HoverCardContent
         side="top"
-        className="flex flex-col items-center border-0 shadow-[inset_0_0_10px_rgba(0,0,0,1)] p-1 max-w-[min(10rem,50vw)]"
+        className="border-0 shadow-[inset_0_0_10px_rgba(0,0,0,1)] p-1 max-w-[min(10rem,50vw)]"
       >
         <img src={selfie} alt="Giacomo" loading="lazy" className="rounded-lg" />
-        <p className="text-xs font-extralight text-center text-muted-foreground py-1">
-          Coast of Rabat, Morocco
+        <p className="text-xs font-extralight text-muted-foreground py-1 text-center">
+          Coast of Rabat
         </p>
       </HoverCardContent>
     </HoverCard>
