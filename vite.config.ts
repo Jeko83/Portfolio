@@ -28,6 +28,8 @@ export default defineConfig({
       'portfolio.giacomo.work',
       'www.giacomo.work',
       'www.portfolio.giacomo.work'
-    ]
-  }
+    ],
+  },
+  // Set to '/portfolio/' if serving from a subdirectory, or '/' for root
+  base: '/'
 })
